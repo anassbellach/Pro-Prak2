@@ -1,0 +1,3 @@
+# Project exclude paths
+/KotlinGame/.gradle/
+/KotlinGame/build/
