@@ -355,13 +355,73 @@
      }
 
 
+     fun halNaarSlaapkamer() {
+     val pistool = Weapon("pistool", 20)
+
+         var input = readLine()
+         println("Je komt in de gang\n" +
+                 "Je kijkt wat rond en ziet een 4 deuren waarvan er 2 zijn die zijn dichtgemaakt.\n" +
+                 "Hierdoor kan je er op geen enkele manier naar binnen\n" +
+                 "Je bestudeert de gang wat beter en ziet ook een kast staan\n" +
+                 "Je loopt naar de deuren toe maar ze zitten allebij op slot.\n" +
+                 "Je gaat opzoek naar iets waarmee je een van de deuren kan openen\n" +
+                 "In de kast vind je 2 dingen welke kies je om proberen te deur te openen?\n" +
+                 "Type sleutel om de sleutel te gebuiken die je hebt gevonden in de kast\n" +
+                 "Type breekijzer om de deuren te openen met het breekijzer.\n")
+
+         if (input == "sleutel") {
+             player1.weapon = pistool
+             println("Met de sleutel loop je naar de eerste deur je steekt hem erin en hij past!\n" +
+                     "Je opent de deur...\n" +
+                     "Het is een bezemkast maar er ligt iets dat licht afflikkert\n" +
+                     "Je pakt het op en het blijkt een lichtkogel-pistool te zijn je neemt hem maar mee voor nu.\n" +
+                     "Je loopt naar de volgende deur en na er een paar keer tegen aan te beuken gaat hi jmet een klap open")
+         } else if (input == "breekijzer") {
+             player1.weapon = pistool
+             println("je loopt naar de eertste deur en breekt hem open door er tegen aan te beuken het ging gemakelijk\n" +
+                     "Je opent opent de deur en het is een bezemkast maar er ligt iets dat licht afflikkert\n" +
+                     "Je pakt het op en het blijkt een lichtkogel-pistool te zijn je neemt hem maar mee voor nu.\n" +
+                     "Je loopt naar de volgende deur en probeert hem open te krijgen.\n" +
+                     "Na er een tijdje tegenaan te duwen kraakt de deur en gaat hij rustig open.\n")
+         }
+
+     }
+
+    fun slaapkamer() {
+
+        var input = readLine()
+        println("Je betreed de kamer ne doet het licht aan.\n" +
+                "Het blijkt een slaapkamer te zijn\n" +
+                "Je kijkt rond en ziet een bureau een kast en een bed maar het lijkt wel alsof er iemand in het bed ligt!\n" +
+                "Je staat even met je voeten aan de grond genageld je denkt na en kijkt rond je ziet een raam.\n" +
+                "De enigste manier die je zover gezien hebt om uit het huis te gaan is uit dit raam.\n" +
+                "Je gaat opzoek naar iets om door het raam te komen.\n" +
+                "Type kast om in de kast te kijken Type bureaulade om in het laatje te kijken\n")
+
+        if (input == "kast") {
+            println("je opent de kast maar de deur kraakt zo erg dat de man wakker word.\n" +
+                    "GAME OVER!")
+        } else if (input == "bureaulade") {
+            println("Je opent de la en vind een klein sleuteltje\n" +
+                    "Je loopt zachtjes naar het raam en steekt het sleuteltje in het kleine slot\n" +
+                    "Het werkt!!\n" +
+                    "Je doet het raam open en springt er voorzichtig uit.\n" +
+                    "Je hebt wel 10 fall damage gekregen\n")
+            player1.life -= 10
+            println("Je health is nu:")
+            println(player1.life)
+        }
+
+    }
+
+
     kelder()
     halNaarTrap()
     trap()
     woonkamer()
     keuken()
-//    halNaarSlaapkamer()
-//    slaapkamer()
+    halNaarSlaapkamer()
+    slaapkamer()
 //    tuin()
 }
 
