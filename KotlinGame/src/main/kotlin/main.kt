@@ -4,7 +4,9 @@
     println("Welkom $player")
     var player1 = Player("$player", 100, 1, 0)
 //    var input = readLine()
-    var ferdinantWaterloo = Enemy("FerdinantWaterloo", 20, 1, 0)
+    var ferdinantWaterloo = Enemy("Ferdinant Waterloo", 20, 1, 0)
+    var andreiChikatilo = Enemy("Andrei Chikatilo", 20, 1, 0)
+    var yangXinhai = Enemy("Yang Xinhai", 20, 1, 0)
     val run = true
 
 
@@ -171,18 +173,6 @@
        }
 
 
-
-//    var knife = Weapon("knife", 20) // aanmaken van een weapon 20 is de damage
-//    println(knife.name)
-//    var player1 = Player("Anass", 5, 1, 0)    // player aanmaken
-//    player1.weapon = Weapon("stok", 10)       // weapon aanmaken en deze aan de player geven
-//    player1.weapon.damageInflicted = 20       // de damage van het weapon veranderen
-//    player1.life -= player1.weapon.damageInflicted // de damage - het leven van player 1
-//    var player2 = Player("Sem", 5, 1, 0)           // player 2 aanmaken
-//    player2.weapon = Weapon("gun", 50)             // een weapon aanmaken en deze aan player 2 geven
-//    player1.life -= player2.weapon.damageInflicted  // player 2 valt aan met zijn wapen deze damage gaat van de leven van player1 af
-
-
     }
 
      fun halNaarTrap() {
@@ -256,37 +246,134 @@
 
          var input = readLine()
          if (input == "aanvallen") {
-             player1.life -= 5
+
              println("Je rent de rent de trap op.\n" +
                      "Je ziet een lang figuur opdagen met rode ogen.\n" +
-                     "voordat je kan je wilt aanvallen maar het figuur geeft je plots een duw waardor je van de trap valt\n" +
+                     "voordat je kan je wilt aanvallen maar het figuur geeft je plots een duw waardoor je van de trap valt\n" +
                      "Hierdoor heb je 5 fall damage gekregen je health is nu:")
+             player1.life -= 5
              println(player1.life)
+             println("Je bent woest\n" +
+                     "Je rent de trap op en valt de enemy aan")
+             while (player1.life > 0 || andreiChikatilo.life > 0) {
+                 player1.life -= andreiChikatilo.weapon.damageInflicted
+                 andreiChikatilo.life -= player1.weapon.damageInflicted
+
+                 if (player1.life <= 0) {
+                     println("De enemy is krachtiger dan je dacht\n" +
+                             "Na een zwaar gevecht heb je het niet overleeft\n" +
+                             "GAME OVER.\n")
+                     break
+                 } else if (andreiChikatilo.life <= 0) {
+                     println("Je staat klaar om te vechten.\n" +
+                             "Het was een zwaar gevecht maar het is je gelukt om Andrei Chikatilo te verslaan")
+                     break
+                 }
+             }
+
 
          } else if (input == "rondkijken") {
+             val zaklamp = Loot("ZAKLAMP", LootType.ZAKLAMP)
+             player1.loot = zaklamp
             println("Je kijkt in de laatjes van de kast die je omver geduwt hebt en je ziet in een van de laatjes een soort zaklamp zitten.\n" +
                     "je pakt de zaklamp op en schijnt het op de ogen.\n" +
                     "Het figuur begint te schreeuwen en word kleiner alsof hij aan het smelten is.\n")
          }
 
+         val groteSleutel = Loot("GROTESLEUTEL", LootType.GROTESLEUTEL)
+         player1.loot = groteSleutel
          println("Je loopt de trap op en ziet dat het figuur helemaal is verbrand.\n" +
                  "Je kijkt in zijn zakken en vind een object wat lijkt op een hele oude grote sleutel.\n" +
                  "Je stopt het in je zak misschien komt die nog van pas.\n")
    }
 
 
+     fun woonkamer() {
+
+         var input = readLine()
+         println("De trap komt uit op de woonkamer.\n" +
+                 "Er is erg fel licht\n" +
+                 "licht terwijl je ogen aan het nieuwe licht wennen zie je als snel dat het erg oud lijkt alsof je opeens in de terug in de tijd bent gegaan.\n" +
+                 "Je kijkt een beetje rond en ziet oude meubels\n" +
+                 "Verder zie je nog iets wat je uistaat het is een soort schatskist\n" +
+                 "Je denkt de sleutel die je net hebt gevonden zou die erin passen?\n" +
+                 "Type ja om de te kijken of de sleutel past type nee om verder rond te kijken.\n")
 
 
+         if (input == "ja") {
+         println("Je probeert de sleutel in de kist en na een beetje er meer rammelen gaat hij open.\n" +
+                 "In de kist vind je katapult en een paar steentjes misschien komt dit nog van pas\n" +
+                 "Je loopt verder en komt uiteindelijk in de keuken uit.")
+         } else if (input == "nee") {
+         println("je kijkt verder in de kamer maar er is niks te vinden je loopt rond en komt uiteindelijk uit in de keuken.")
+         }
+     }
 
+     fun keuken() {
 
+         var input = readLine()
+         println("Je loopt de keuken binnen het is er redelijk donker.\n" +
+                 "Je kan je niet meer herrineren wanneer je voor de laatste keer iets hebt gegeten.\n" +
+                 "Je gaat opzoek naar iets te eten.\n" +
+                 "Type koelkast om daarin te kijken type kastjes om in de kastjes te kijken.\n")
+
+         while (run) {
+             if (input == "koelkast") {
+                 println("Je opent de koelkast maar er liggen alleen maar lege zakjes en kruimels in.\n" +
+                         "Type kastjes om in de kastjes te kijken.")
+             } else if (input == "kastjes") {
+                 println("Je probeert het kastje te openen maar het kastje is zo oud dat je de het deurtje eraf valt op de grond.\n" +
+                         "Opeens hoor je gekreun in een hoek van de kamer komen.\n" +
+                         "Je kijkt om en het ziet een groot dik figuur in de donkere hoek.\n" +
+                         "Het figuur staat op en stapt in het licht, Het is een Troll!\n" +
+                         "Hij komt op je af wat doe je?\n" +
+                         "Je hebt 2 keuzes wegrennen of de troll vechten met de katapult die je net hebt gevonden\n" +
+                         "Type vechten om te vechten en wegrennen om te vluchten.\n")
+
+                 if (input == "vechten") {
+                     println("je pakt je katapult uit je zak en doet er een steen in Je mist!\n" +
+                             "Je herlaat de katapult en schiet een steen tegen zijn voorhooft de steen heeft hem uit zijn evenwicht gehaald\n" +
+                             "de troll valt achterover en is buiten bewustzijn.\n" +
+                             "De troll stinkt je wilt hier snel weg je ziet een gang je loopt langs de troll naar de gang.\n")
+                     break
+                 } else if (input == "wegrennen") {
+                     while (run) {
+                         player1.life -= yangXinhai.weapon.damageInflicted
+                         if (player1.life <= 0) {
+                             println(
+                                 "Je rent de keuken uit terug naar de gang\n" +
+                                         "De gang loopt dood!!\n" +
+                                         "Je hoort voetstappen van de troll dichterbij komen\n" +
+                                         "De troll heeft je kunnen pakken\n" +
+                                         "Game over")
+                             break
+                         }
+                     }
+                 }
+             }
+         }
+     }
 
 
     kelder()
     halNaarTrap()
     trap()
-//    woonkamer()
-//    keuken()
+    woonkamer()
+    keuken()
 //    halNaarSlaapkamer()
 //    slaapkamer()
 //    tuin()
 }
+
+
+
+
+//    var knife = Weapon("knife", 20) // aanmaken van een weapon 20 is de damage
+//    println(knife.name)
+//    var player1 = Player("Anass", 5, 1, 0)    // player aanmaken
+//    player1.weapon = Weapon("stok", 10)       // weapon aanmaken en deze aan de player geven
+//    player1.weapon.damageInflicted = 20       // de damage van het weapon veranderen
+//    player1.life -= player1.weapon.damageInflicted // de damage - het leven van player 1
+//    var player2 = Player("Sem", 5, 1, 0)           // player 2 aanmaken
+//    player2.weapon = Weapon("gun", 50)             // een weapon aanmaken en deze aan player 2 geven
+//    player1.life -= player2.weapon.damageInflicted  // player 2 valt aan met zijn wapen deze damage gaat van de leven van player1 af
