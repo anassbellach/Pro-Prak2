@@ -145,7 +145,7 @@
                                 "Type deur 2 om te kijken of hij in deur 2 past\n" +
                                 "Type deur 3 om te kijken of hij in deur 3 past\n"
                     )
-                    break;
+                    break
                 }
             }
 
