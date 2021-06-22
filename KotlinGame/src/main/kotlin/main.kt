@@ -3,9 +3,9 @@
     var player = readLine()
     println("Welkom $player")
     var player1 = Player("$player", 100, 1, 0)
+    var input = readLine()
 
-
-
+     var ferdinantWaterloo = Enemy("FerdinantWaterloo", 20, 1, 0)
 
    fun kelder() {
         println("Je bent zojuist wakker geworden maar niet in je eigen bed.\n" +
@@ -59,7 +59,7 @@
         }
 
         input = readLine()
-        var FerdinantWaterloo = Enemy("FerdinantWaterloo", 20, 1, 0)
+//        var ferdinantWaterloo = Enemy("FerdinantWaterloo", 20, 1, 0)
         if (input == "verstoppen") {
             println("Je ziet een kast en besluit er in te gaan verstoppen\n" +
                         "De stem komt steeds dichterbij.\n" +
@@ -70,9 +70,9 @@
             )
         } else if (input == "aanvallen") {
 
-            while (player1.life > 0 || FerdinantWaterloo .life > 0) {
-                player1.life -= FerdinantWaterloo.weapon.damageInflicted
-                FerdinantWaterloo.life -= player1.weapon.damageInflicted
+            while (player1.life > 0 || ferdinantWaterloo.life > 0) {
+                player1.life -= ferdinantWaterloo.weapon.damageInflicted
+                ferdinantWaterloo.life -= player1.weapon.damageInflicted
 
                 if (player1.life <= 0) {
                 println("Je staat klaar om te vechten.\n" +
@@ -83,7 +83,7 @@
                             "De stem had je door en ontwijkt je aanval.\n" +
                             "GAME OVER.\n")
                     break
-              } else if (FerdinantWaterloo.life <= 0) {
+              } else if (ferdinantWaterloo.life <= 0) {
                 println("Je staat klaar om te vechten.\n" +
                             "Je vind het wel erg eng.\n" +
                             "Hoe ben je hier beland.\n" +
@@ -97,34 +97,6 @@
             }
           }
         }
-
-
-
-//            var FerdinantWaterloo = Enemy("FerdinantWaterloo", 20, 1, 0)
-//            player1.life -= FerdinantWaterloo.weapon.damageInflicted
-//            if (player1.life == 0) {
-//                println("Je staat klaar om te vechten.\n" +
-//                            "Je vind het wel erg eng.\n" +
-//                            "Hoe ben je hier beland.\n" +
-//                            "Er is niet veel tijd om na te denken.\n" +
-//                            "Je rent op de stem af en begint te vechten.\n" +
-//                            "De stem had je door en ontwijkt je aanval.\n" +
-//                            "GAME OVER.\n"
-//                )
-//            } else if (FerdinantWaterloo.life == 0) {
-//                println(
-//                    "Je staat klaar om te vechten.\n" +
-//                            "Je vind het wel erg eng.\n" +
-//                            "Hoe ben je hier beland.\n" +
-//                            "Er is niet veel tijd om na te denken.\n" +
-//                            "Je rent op de stem af en begint te vechten.\n" +
-//                            "De stem is verrast en schrikt hierdoor hem je hem kunnen verslaan.\n" +
-//                            "Het blijkt een veel gezochte moordenaar te zijn.\n" +
-//                            "Je ziet dat er iets in zijn zakken zit.\n" +
-//                            "type ja om de zakken te doorzoeken en nee om ze niet te doorzoeken.\n"
-//                )
-//            }
-//        }
 
         input = readLine()
        var loot1 = Loot("sleutel", LootType.SLEUTELS)
@@ -149,24 +121,6 @@
             )
         }
 
-//input = readLine()
-
-//    if (input == "kast") {
-//        println("de kast is leeg...\n" +
-//                "Type laatjes om in de laatjes te doorzoeken\n" +
-//                "Type broekzakken om de broekzakken te doorzoeken\n")
-//    } else if (input == "broekzak") {
-//        println("in de broekzakken vind je een sleutel" +
-//                "Type deur 1 om te kijken of hij in deur 1 past\n" +
-//                "Type deur 2 om te kijken of hij in deur 2 past" +
-//                "Type deur 3 om te kijken of hij in deur 3 past")
-//    } else if (input == "laatjes") {
-//        println("in de laatjes vind je alleen foto's van jezelf\n" +
-//                "Je schrikt hier erg van\n" +
-//                "Je kijkt snel verder\n" +
-//                "Type kast om in de kast te doorzoeken\n" +
-//                "Type broekzakken om de broekzakken te doorzoeken\n")
-//    }
        val run = true
         while (run) {
             input = readLine()
@@ -218,22 +172,84 @@
 
 
 
-//    var knife = Weapon("knife", 20)
+//    var knife = Weapon("knife", 20) // aanmaken van een weapon 20 is de damage
 //    println(knife.name)
-//    var player1 = Player("Anass", 5, 1, 0)
-//    player1.weapon = Weapon("stok", 10)
-//    player1.weapon.damageInflicted = 20
-//    player1.life -= player1.weapon.damageInflicted
-//    var player2 = Player("Sem", 5, 1, 0)
-//    player2.weapon = Weapon("gun", 50)
-//    player1.life -= player2.weapon.damageInflicted
+//    var player1 = Player("Anass", 5, 1, 0)    // player aanmaken
+//    player1.weapon = Weapon("stok", 10)       // weapon aanmaken en deze aan de player geven
+//    player1.weapon.damageInflicted = 20       // de damage van het weapon veranderen
+//    player1.life -= player1.weapon.damageInflicted // de damage - het leven van player 1
+//    var player2 = Player("Sem", 5, 1, 0)           // player 2 aanmaken
+//    player2.weapon = Weapon("gun", 50)             // een weapon aanmaken en deze aan player 2 geven
+//    player1.life -= player2.weapon.damageInflicted  // player 2 valt aan met zijn wapen deze damage gaat van de leven van player1 af
 
 
     }
-//    main()
+
+     fun halNaarTrap() {
+
+         println(
+             "Je bent in de volgende kamer gekomen het lijkt op een kleine hal je ziet een deur achter in de hal.\n" +
+                     "Je loopt naar de deur toe en probeer hem te openen maar hij zit dicht.\n" +
+                     "Je kijkt wat beter rond in de kamer en ziet een stroomkast\n" +
+                     "Het is erg donker dus je probeert het stroom the fixen, Je ziet een paar items welke kies je om de stroom te fixen?\n" +
+                     "Type schroevendraaier  om de schroevendraaier te pakken\n" +
+                     "Type tang om de tang te pakken\n" +
+                     "Type hamer om de hamer te pakken\n"
+         )
+
+         val run = true
+         while (run) {
+
+             input = readLine()
+
+             if (input == "schroevendraaier") {
+                 println(
+                     "Je opent de kast en ziet dat de kabels zijn je kan niks doen met de schroevendraaier\n" +
+                             "Probeer de hamer of tang\n" +
+                             "Dit doe je door hamer of tang te typen\n"
+                 )
+             } else if (input == "tang") {
+                 println("Je knipt het slot van de kast open en ziet dat de kabels zijn doorgeknipt je kan niks met de tang\n" +
+                             "Probeer de hamer of tang\n" +
+                             "Dit doe je door hamer of tang te typen\n")
+             }
+
+             if (input == "hamer") {
+                 println("Je geeft een goede tik tegen de kast en het licht flikkert een beetje je geeft en iets hardere tik en het licht blijft aan Het is gelukt!\n" +
+                             "Je kijkt wat rond en ziet een paar items welke kies je om de deur open te krijgen?\n" +
+                             "Type breekijzer om de breekijzer te proberen\n" +
+                             "Type stormram om de stormram te proberen\n" +
+                             "Type sleutel om de sleutel te proberen\n")
+                 break
+             }
+         }
+
+
+
+         while (run) {
+
+             input = readLine()
+
+             if (input == "stormram") {
+                 println("je pakt de stormram op en beukt hem een paar keer tegen de deur aan maar er gebeurt niks het lijkt wel alsof er iets aan de andere kant ervoor zit.\n" +
+                             "Probeer de breekijzer of sleutel\n")
+             } else if (input == "sleutel") {
+                 println("je probeert de sleutel in het slot maar de sleutel breekt waardoor hij waardeloos is.\n" +
+                             "probeer de stormram of breekijzer\n")
+             }
+
+             if (input == "breekijzer") {
+                 println("Je pakt het breekijzer en je manoevreert het tussen de deur de deur kraakt een beetje maar hij opent maar er staat een grote kast voor.\n")
+             }
+         }
+
+   }
+
+
+
     kelder()
-//    halNaarTrap()
-//    trap()
+    halNaarTrap()
+    trap()
 //    woonkamer()
 //    keuken()
 //    halNaarSlaapkamer()
