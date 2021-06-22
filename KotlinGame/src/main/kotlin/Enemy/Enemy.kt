@@ -1,5 +1,6 @@
-class Enemy(val name: String, var life: Int = 3, var level: Int = 1, var  score: Int = 0) {
+open class Enemy(val name: String, var life: Int = 3, var level: Int = 1, var  score: Int = 0) {
     var weapon = Weapon("Fists", 10)
+
 
     fun show(){
         println("""
